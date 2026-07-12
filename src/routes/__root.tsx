@@ -84,10 +84,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "SparklePro Integrated Cleaning Service — professional house cleaning in Lekki, Lagos. Focus on other things, cleaning is our core.",
       },
       { name: "author", content: "SparklePro Integrated Cleaning Service" },
-      { property: "og:title", content: "SparklePro Integrated Cleaning Service" },
-      { property: "og:description", content: "Professional house cleaning in Lekki, Lagos. Open 24 hours." },
+      { property: "og:title", content: "SparklePro Integrated Cleaning Service | Lekki, Lagos" },
+      { property: "og:description", content: "SparklePro Integrated Cleaning Service — professional house cleaning in Lekki, Lagos. Focus on other things, cleaning is our core." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "SparklePro Integrated Cleaning Service | Lekki, Lagos" },
+      { name: "twitter:description", content: "SparklePro Integrated Cleaning Service — professional house cleaning in Lekki, Lagos. Focus on other things, cleaning is our core." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/1ab1b1f8-49bc-46bb-9c4d-b3ba5e80aff9" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/1ab1b1f8-49bc-46bb-9c4d-b3ba5e80aff9" },
     ],
     links: [
       {
