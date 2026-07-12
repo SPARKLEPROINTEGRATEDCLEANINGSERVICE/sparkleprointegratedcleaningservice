@@ -150,6 +150,105 @@ function About() {
           </div>
         </div>
       </section>
+
+      <WhyChooseUs />
     </div>
+  );
+}
+
+function WhyChooseUs() {
+  const reasons = [
+    {
+      title: "Professional Cleaners",
+      text: "Every SparklePro job is handled with a touch of professionalism — we are proud to be a professional cleaning services company in Lekki, Lagos.",
+    },
+    {
+      title: "Trained & Secured Janitors",
+      text: "We don't just train. We vet, background-check and deploy the right candidates to your home or office.",
+    },
+    {
+      title: "Managed Services",
+      text: "We provide uncommon facilities managed services with dedication, supervision and reliable follow-through.",
+    },
+    {
+      title: "Eco-Friendly Fumigation",
+      text: "Our reagents are odourless and safe for people and pets — effective on pests, gentle on your space.",
+    },
+    {
+      title: "Commitment to Quality",
+      text: "We are committed to quality service. We don't just clean — we clean right, every single time.",
+    },
+    {
+      title: "Ongoing Training",
+      text: "We continually train and empower our cleaners so every SparklePro visit meets the same 4.8★ standard.",
+    },
+  ];
+
+  return (
+    <section className="bg-muted/50 py-20">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="text-xs font-bold uppercase tracking-widest text-brand">Why Choose Us</div>
+          <h2 className="mt-3 text-3xl font-black text-primary md:text-4xl">
+            Not just anybody can clean and get it right.
+          </h2>
+          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-brand" />
+          <p className="mt-6 text-muted-foreground">
+            You can't afford to deploy just anyone to take care of your investments and properties. SparklePro
+            Integrated Cleaning Service is a team of professionals who know exactly what to do for your peace of
+            mind — a janitorial services company in Lekki, Lagos with a difference.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {reasons.map((r) => (
+            <div key={r.title} className="rounded-2xl bg-card p-6 shadow-sm ring-1 ring-border">
+              <div className="text-lg font-black text-primary">{r.title}</div>
+              <p className="mt-3 text-sm text-muted-foreground">{r.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 grid gap-10 md:grid-cols-2">
+          <article className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border">
+            <h3 className="text-2xl font-black text-primary">
+              One of the best cleaning teams in Lekki
+            </h3>
+            <p className="mt-4 text-sm text-muted-foreground">
+              There are many cleaning companies in Lagos, but what sets SparklePro apart is how we work — our people,
+              our reagents and our attention to detail. We create positive impact by using eco-friendly products and
+              equipment so your space is spotless without harming the environment.
+            </p>
+          </article>
+
+          <article className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border">
+            <h3 className="text-2xl font-black text-primary">
+              Fumigation, disinfection & decontamination
+            </h3>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Our technicians combine eco-friendly reagents with the right equipment — including thermal fogging — for
+              fumigation, virus disinfection and pest control in homes, offices and public spaces across Lekki, Ajah,
+              Ikoyi and Victoria Island.
+            </p>
+          </article>
+
+          <article className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border md:col-span-2">
+            <h3 className="text-2xl font-black text-primary">
+              Janitorial services you can rely on
+            </h3>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Cleaning may seem simple, but a truly spotless and hygienic environment takes expertise. SparklePro
+              deploys trained cleaners and janitors across Lagos with full supervision, so you never have to worry
+              about unexpected absence or drop in quality. We serve residential, commercial and post-construction
+              spaces — Lekki, Ajah, VI, Ikoyi, Maryland and surrounding areas. Call{" "}
+              <a href="tel:+2348146269080" className="font-bold text-brand">
+                +234 814 626 9080
+              </a>{" "}
+              to request a tailored proposal.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
   );
 }
