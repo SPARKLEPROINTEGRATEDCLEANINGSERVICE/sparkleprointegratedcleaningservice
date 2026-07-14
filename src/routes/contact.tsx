@@ -11,6 +11,52 @@ export const Route = createFileRoute("/contact")({
         content: "Reach SparklePro Integrated Cleaning Service — Lekki, Lagos. Call +234 814 626 9080.",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "SparklePro Integrated Cleaning Service",
+          image: "https://sparkleprointegratedcleaningservice.lovable.app/favicon.png",
+          telephone: "+2348146269080",
+          email: "sparkleprointegratedgmail.com".replace("gmail.com", "@gmail.com"),
+          url: "https://sparkleprointegratedcleaningservice.lovable.app/",
+          priceRange: "₦₦",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "U3 Estate Maruwa",
+            addressLocality: "Lekki",
+            postalCode: "105101",
+            addressRegion: "Lagos",
+            addressCountry: "NG",
+          },
+          areaServed: [
+            "Lekki", "Ajah", "Victoria Island", "Ikoyi", "Ikate", "Chevron",
+            "Sangotedo", "Maryland", "Yaba", "Ikeja", "Surulere", "Magodo",
+          ].map((a) => ({ "@type": "Place", name: `${a}, Lagos` })),
+          openingHoursSpecification: [
+            { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "00:00", closes: "23:59" },
+            { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "09:00", closes: "17:00" },
+          ],
+          aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "40" },
+          sameAs: ["https://maps.app.goo.gl/GJoHJ4HuWCG4B2dcA"],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            { "@type": "Question", name: "What areas of Lagos do you cover?", acceptedAnswer: { "@type": "Answer", text: "We cover Lekki (Phase 1 & 2), Ajah, Victoria Island, Ikoyi, Ikate, Chevron, Sangotedo, Maryland, Yaba, Ikeja, Surulere and Magodo. If your area isn't listed, message us on WhatsApp — we usually cover it." } },
+            { "@type": "Question", name: "How quickly can you respond?", acceptedAnswer: { "@type": "Answer", text: "We're open 24 hours Monday–Saturday and 9am–5pm on Sundays. Most bookings on WhatsApp get a reply within minutes." } },
+            { "@type": "Question", name: "How do I book a cleaning?", acceptedAnswer: { "@type": "Answer", text: "Use the Book Online form, chat us on WhatsApp at +234 814 626 9080, or email sparkleprointegrated@gmail.com." } },
+            { "@type": "Question", name: "Are your fumigation reagents safe?", acceptedAnswer: { "@type": "Answer", text: "Yes — we use eco-friendly, odourless reagents that are safe for people and pets while remaining effective on pests." } },
+          ],
+        }),
+      },
+    ],
   }),
   component: Contact,
 });
@@ -120,8 +166,7 @@ function Contact() {
               <iframe
                 title="SparklePro service area — Lekki, Lagos"
                 src="https://www.google.com/maps?q=Lekki%2C%20Lagos%2C%20Nigeria&output=embed"
-                width="100%"
-                height="450"
+                className="h-[320px] w-full sm:h-[420px] lg:h-[520px]"
                 style={{ border: 0 }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -129,27 +174,13 @@ function Contact() {
               />
             </div>
             <div className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border">
-              <div className="text-lg font-black text-primary">Areas we cover</div>
-              <ul className="mt-4 grid grid-cols-2 gap-2 text-sm font-semibold text-foreground">
-                {[
-                  "Lekki Phase 1 & 2",
-                  "Ajah",
-                  "Victoria Island",
-                  "Ikoyi",
-                  "Ikate",
-                  "Chevron",
-                  "Sangotedo",
-                  "Maryland",
-                  "Yaba",
-                  "Ikeja",
-                  "Surulere",
-                  "Magodo",
-                ].map((a) => (
-                  <li key={a} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand" /> {a}
-                  </li>
-                ))}
-              </ul>
+              <div className="text-lg font-black text-primary">Lagos coverage</div>
+              <p className="mt-2 text-sm text-muted-foreground">Same-day service across the Island and Mainland.</p>
+              <div className="mt-5 space-y-4 text-sm">
+                <AreaGroup title="Lekki Peninsula" items={["Lekki Phase 1", "Lekki Phase 2", "Ikate", "Chevron", "Ajah", "Sangotedo"]} />
+                <AreaGroup title="Island" items={["Victoria Island", "Ikoyi", "Oniru"]} />
+                <AreaGroup title="Mainland" items={["Maryland", "Yaba", "Ikeja", "Surulere", "Magodo", "Gbagada"]} />
+              </div>
               <p className="mt-5 text-sm text-muted-foreground">
                 Not sure if we cover your area?{" "}
                 <a href={`https://wa.me/${waNumber}`} className="font-bold text-brand">
@@ -161,6 +192,46 @@ function Contact() {
           </div>
         </div>
       </section>
+
+      <section className="py-20">
+        <div className="mx-auto max-w-4xl px-4 md:px-8">
+          <div className="text-center">
+            <div className="text-xs font-bold uppercase tracking-widest text-brand">FAQ</div>
+            <h2 className="mt-3 text-3xl font-black text-primary md:text-4xl">Frequently Asked Questions</h2>
+            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-brand" />
+          </div>
+          <div className="mt-10 space-y-4">
+            {[
+              ["What areas of Lagos do you cover?", "We cover Lekki (Phase 1 & 2), Ajah, Victoria Island, Ikoyi, Ikate, Chevron, Sangotedo, Maryland, Yaba, Ikeja, Surulere and Magodo. If your area isn't listed, message us on WhatsApp — we usually cover it."],
+              ["How quickly can you respond?", "We're open 24 hours Monday–Saturday and 9am–5pm on Sundays. Most bookings on WhatsApp get a reply within minutes."],
+              ["How do I book a cleaning?", "Use the Book Online form, chat us on WhatsApp at +234 814 626 9080, or email sparkleprointegrated@gmail.com."],
+              ["Are your fumigation reagents safe?", "Yes — we use eco-friendly, odourless reagents that are safe for people and pets while remaining effective on pests."],
+            ].map(([q, a]) => (
+              <details key={q} className="group rounded-xl bg-card p-5 shadow-sm ring-1 ring-border">
+                <summary className="cursor-pointer list-none text-base font-bold text-primary marker:hidden">
+                  <span className="mr-2 text-brand">＋</span>{q}
+                </summary>
+                <p className="mt-3 text-sm text-muted-foreground">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function AreaGroup({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div>
+      <div className="text-xs font-bold uppercase tracking-widest text-brand">{title}</div>
+      <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-sm font-semibold text-foreground">
+        {items.map((a) => (
+          <li key={a} className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand" /> {a}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
