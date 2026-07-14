@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site-layout";
-import team1 from "@/assets/team-1.jpg";
-import team2 from "@/assets/team-2.jpg";
-import team3 from "@/assets/team-3.jpg";
+import teamKemi from "@/assets/team-kemi.jpg";
 import cleanHome from "@/assets/clean-home.jpg";
 
 export const Route = createFileRoute("/about-us")({
@@ -35,22 +34,11 @@ function About() {
 
   const team = [
     {
-      img: team1,
-      name: "Adewale O.",
-      role: "Executive Director",
-      bio: "Adewale leads strategy at SparklePro Integrated Cleaning Service.",
-    },
-    {
-      img: team2,
-      name: "Chidinma E.",
-      role: "General Manager",
-      bio: "Chidinma manages daily operations across every SparklePro job.",
-    },
-    {
-      img: team3,
-      name: "Tunde A.",
-      role: "Operations Manager",
-      bio: "Tunde coordinates our field teams and quality assurance.",
+      img: teamKemi,
+      name: "Kemi Adebayo Praise",
+      role: "Lead Cleaning Specialist",
+      bio: "4 years leading professional cleaning across Lagos — detail-oriented, reliable and always on time.",
+      to: "/team/kemi-adebayo-praise",
     },
   ];
 
@@ -124,10 +112,11 @@ function About() {
             <h2 className="mt-3 text-3xl font-black text-primary md:text-4xl">Meet Our Team</h2>
             <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-brand" />
           </div>
-          <div className="mt-14 grid gap-8 md:grid-cols-3">
+          <div className="mx-auto mt-14 grid max-w-md gap-8">
             {team.map((m) => (
-              <article
+              <Link
                 key={m.name}
+                to={m.to}
                 className="overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border transition hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="aspect-[4/5] overflow-hidden">
@@ -137,15 +126,18 @@ function About() {
                     width={800}
                     height={900}
                     loading="lazy"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition duration-500 hover:scale-105"
                   />
                 </div>
                 <div className="p-6 text-center">
                   <div className="text-xl font-black text-primary">{m.name}</div>
                   <div className="mt-1 text-sm font-semibold text-brand">{m.role}</div>
                   <p className="mt-3 text-sm text-muted-foreground">{m.bio}</p>
+                  <div className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primary">
+                    View Profile <span aria-hidden>→</span>
+                  </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
