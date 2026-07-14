@@ -20,7 +20,7 @@ export const Route = createFileRoute("/contact")({
           name: "SparklePro Integrated Cleaning Service",
           image: "https://sparkleprointegratedcleaningservice.lovable.app/favicon.png",
           telephone: "+2348146269080",
-          email: "sparkleprointegratedgmail.com".replace("gmail.com", "@gmail.com"),
+          email: "sparkleprointegrated@gmail.com",
           url: "https://sparkleprointegratedcleaningservice.lovable.app/",
           priceRange: "₦₦",
           address: {
@@ -63,6 +63,7 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [sent, setSent] = useState<null | { via: "whatsapp"; to: string } | { via: "email"; to: string }>(null);
   const waNumber = "2348146269080";
   const supportEmail = "sparkleprointegrated@gmail.com";
   const waHref = `https://wa.me/${waNumber}?text=${encodeURIComponent(
@@ -111,8 +112,19 @@ function Contact() {
             onSubmit={(e) => {
               e.preventDefault();
               window.open(waHref, "_blank", "noopener,noreferrer");
+              setSent({ via: "whatsapp", to: "+234 814 626 9080" });
             }}
           >
+            {sent && (
+              <div className="mb-5 rounded-xl bg-primary/10 p-4 text-sm text-primary ring-1 ring-primary/30">
+                <div className="font-black">✅ Message ready to send!</div>
+                <div className="mt-1">
+                  We opened {sent.via === "whatsapp" ? "WhatsApp" : "your email app"} with your message
+                  addressed to{" "}
+                  <span className="font-bold">{sent.to}</span>. Please hit send there to complete your enquiry.
+                </div>
+              </div>
+            )}
             <div className="grid gap-4">
               <Field label="Your Name" name="name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
               <Field label="Email" name="email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
@@ -136,6 +148,7 @@ function Contact() {
                 </button>
                 <a
                   href={mailHref}
+                  onClick={() => setSent({ via: "email", to: supportEmail })}
                   className="rounded-full bg-primary px-7 py-3 text-center text-sm font-bold text-primary-foreground hover:opacity-90"
                 >
                   Send via Email
