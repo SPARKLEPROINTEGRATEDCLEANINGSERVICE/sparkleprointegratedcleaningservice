@@ -65,11 +65,19 @@ function BookOnline() {
         <div className="mx-auto max-w-3xl px-4 md:px-8">
           {sent ? (
             <div className="rounded-2xl bg-primary p-10 text-center text-primary-foreground shadow-xl">
-              <h2 className="text-3xl font-black">Booking received!</h2>
+              <div className="text-5xl">✅</div>
+              <h2 className="mt-3 text-3xl font-black">Booking ready to send!</h2>
               <p className="mt-3 opacity-90">
-                Thanks for choosing SparklePro. Your booking details have been opened in{" "}
-                {channel === "email" ? "your email app" : "WhatsApp"} — just hit send and we'll confirm shortly
-                on +234 814 626 9080.
+                Thanks for choosing SparklePro. Your booking has been prefilled in{" "}
+                <span className="font-black">{channel === "email" ? "your email app" : "WhatsApp"}</span>{" "}
+                and addressed to:
+              </p>
+              <div className="mx-auto mt-4 inline-block rounded-full bg-white/15 px-5 py-2 text-base font-black tracking-wide">
+                {channel === "email" ? SUPPORT_EMAIL : "+234 814 626 9080"}
+              </div>
+              <p className="mt-4 text-sm opacity-90">
+                Just hit <span className="font-bold">Send</span> in the {channel === "email" ? "email" : "WhatsApp"} window
+                that opened — we'll confirm your booking shortly.
               </p>
               <button
                 onClick={() => {
