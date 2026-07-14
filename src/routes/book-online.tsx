@@ -16,8 +16,11 @@ export const Route = createFileRoute("/book-online")({
 });
 
 const SERVICES = ["House Cleaning", "Office / Janitorial", "Fumigation", "Move In / Move Out", "Post-Construction"];
+const SUPPORT_EMAIL = "sparkleprointegrated@gmail.com";
+const WA_NUMBER = "2348146269080";
 
 function BookOnline() {
+  const [channel, setChannel] = useState<"whatsapp" | "email" | null>(null);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -29,18 +32,29 @@ function BookOnline() {
     time: "",
     notes: "",
   });
-  const waNumber = "2348146269080";
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm({ ...form, [k]: e.target.value });
 
+  const buildBody = () =>
+    `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\n` +
+    `Service: ${form.service}\nAddress: ${form.address}\n` +
+    `Date: ${form.date}   Time: ${form.time}\n\nDetails:\n${form.notes}`;
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg =
-      `New booking request — SparklePro\n\n` +
-      `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\n` +
-      `Service: ${form.service}\nAddress: ${form.address}\n` +
-      `Date: ${form.date}   Time: ${form.time}\n\nDetails:\n${form.notes}`;
-    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+    const body = `New booking request — SparklePro\n\n${buildBody()}`;
+    if (channel === "email") {
+      const href = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(
+        `New booking request — ${form.name || "SparklePro customer"}`,
+      )}&body=${encodeURIComponent(body)}`;
+      window.location.href = href;
+    } else {
+      window.open(
+        `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(body)}`,
+        "_blank",
+        "noopener,noreferrer",
+      );
+    }
     setSent(true);
   };
 
@@ -53,21 +67,91 @@ function BookOnline() {
             <div className="rounded-2xl bg-primary p-10 text-center text-primary-foreground shadow-xl">
               <h2 className="text-3xl font-black">Booking received!</h2>
               <p className="mt-3 opacity-90">
-                Thanks for choosing SparklePro. Your booking details have been opened in WhatsApp — send the message and
-                we'll confirm shortly on +234 814 626 9080.
+                Thanks for choosing SparklePro. Your booking details have been opened in{" "}
+                {channel === "email" ? "your email app" : "WhatsApp"} — just hit send and we'll confirm shortly
+                on +234 814 626 9080.
               </p>
               <button
-                onClick={() => setSent(false)}
+                onClick={() => {
+                  setSent(false);
+                  setChannel(null);
+                }}
                 className="mt-6 rounded-full bg-brand px-6 py-2 text-sm font-bold text-brand-foreground"
               >
                 Make another booking
               </button>
+            </div>
+          ) : channel === null ? (
+            <div className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border">
+              <div className="text-xs font-bold uppercase tracking-widest text-brand">Book Online</div>
+              <h2 className="mt-3 text-2xl font-black text-primary md:text-3xl">
+                Reserve your cleaning in under a minute.
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Booking online is the fastest way to lock in your preferred date and time with SparklePro. Fill
+                in your details, pick the service you need, and we'll take it from there — no back-and-forth
+                phone calls, no waiting. Before you start, pick how you'd like to send your booking to us:
+              </p>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <button
+                  onClick={() => setChannel("whatsapp")}
+                  className="group rounded-2xl border-2 border-border p-6 text-left transition hover:-translate-y-1 hover:border-[#25D366] hover:shadow-lg"
+                >
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white">
+                    💬
+                  </div>
+                  <div className="mt-4 text-lg font-black text-primary">Send via WhatsApp</div>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Fastest reply — your booking opens directly in WhatsApp, ready to send to
+                    +234 814 626 9080.
+                  </p>
+                </button>
+
+                <button
+                  onClick={() => setChannel("email")}
+                  className="group rounded-2xl border-2 border-border p-6 text-left transition hover:-translate-y-1 hover:border-primary hover:shadow-lg"
+                >
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                    ✉️
+                  </div>
+                  <div className="mt-4 text-lg font-black text-primary">Send via Email</div>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    We'll pre-fill everything into your email app, addressed to {SUPPORT_EMAIL} — just hit send.
+                  </p>
+                </button>
+              </div>
+
+              <p className="mt-6 text-center text-xs text-muted-foreground">
+                Prefer to call? Dial{" "}
+                <a href="tel:+2348146269080" className="font-bold text-brand">
+                  +234 814 626 9080
+                </a>
+                .
+              </p>
             </div>
           ) : (
             <form
               onSubmit={submit}
               className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border"
             >
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-widest text-brand">
+                    Sending via {channel === "email" ? "Email" : "WhatsApp"}
+                  </div>
+                  <div className="text-sm font-semibold text-primary">
+                    {channel === "email" ? SUPPORT_EMAIL : "+234 814 626 9080"}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setChannel(null)}
+                  className="text-xs font-bold uppercase tracking-widest text-brand hover:underline"
+                >
+                  ← Change
+                </button>
+              </div>
               <div className="grid gap-4 md:grid-cols-2">
                 <Field label="Full Name" name="name" required value={form.name} onChange={set("name")} />
                 <Field label="Phone Number" name="phone" required value={form.phone} onChange={set("phone")} />
@@ -102,9 +186,13 @@ function BookOnline() {
               </div>
               <button
                 type="submit"
-                className="mt-6 w-full rounded-full bg-brand px-7 py-4 text-sm font-bold text-brand-foreground shadow-lg shadow-brand/30 hover:opacity-90"
+                className={`mt-6 w-full rounded-full px-7 py-4 text-sm font-bold shadow-lg hover:opacity-90 ${
+                  channel === "email"
+                    ? "bg-primary text-primary-foreground shadow-primary/30"
+                    : "bg-[#25D366] text-white shadow-[#25D366]/30"
+                }`}
               >
-                Send Booking via WhatsApp
+                Send Booking via {channel === "email" ? "Email" : "WhatsApp"}
               </button>
               <p className="mt-3 text-center text-xs text-muted-foreground">
                 Or call us directly:{" "}
