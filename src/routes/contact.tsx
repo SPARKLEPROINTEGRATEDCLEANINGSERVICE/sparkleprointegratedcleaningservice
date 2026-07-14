@@ -18,8 +18,14 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const waNumber = "2348146269080";
+  const supportEmail = "sparkleprointegrated@gmail.com";
   const waHref = `https://wa.me/${waNumber}?text=${encodeURIComponent(
     `Hello SparklePro, I'd like to get in touch.\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\n${form.message}`,
+  )}`;
+  const mailHref = `mailto:${supportEmail}?subject=${encodeURIComponent(
+    "New enquiry from SparklePro website",
+  )}&body=${encodeURIComponent(
+    `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\n${form.message}`,
   )}`;
   return (
     <div>
@@ -33,17 +39,26 @@ function Contact() {
               <ContactRow label="Address" value="U3 Estate Maruwa, Lekki 105101, Lagos, Nigeria" />
               <ContactRow label="Phone" value="+234 814 626 9080" href="tel:+2348146269080" />
               <ContactRow label="WhatsApp" value="Chat on WhatsApp" href={`https://wa.me/${waNumber}`} />
+              <ContactRow label="Email" value={supportEmail} href={`mailto:${supportEmail}`} />
               <ContactRow label="Hours" value="Open 24 hours (Sun 9 AM – 5 PM)" />
               <ContactRow label="Google Rating" value="4.8 ★ — House cleaning service" />
             </div>
-            <a
-              href={`https://wa.me/${waNumber}`}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-3 text-sm font-bold text-white shadow-lg hover:opacity-90"
-            >
-              💬 Message us on WhatsApp
-            </a>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={`https://wa.me/${waNumber}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-3 text-sm font-bold text-white shadow-lg hover:opacity-90"
+              >
+                💬 WhatsApp
+              </a>
+              <a
+                href={`mailto:${supportEmail}`}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-bold text-primary-foreground shadow-lg hover:opacity-90"
+              >
+                ✉️ Email Us
+              </a>
+            </div>
           </div>
           <form
             className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border"
@@ -66,17 +81,84 @@ function Contact() {
                   className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none focus:border-brand"
                 />
               </div>
-              <button
-                type="submit"
-                className="mt-2 rounded-full bg-brand px-7 py-3 text-sm font-bold text-brand-foreground hover:opacity-90"
-              >
-                Send via WhatsApp
-              </button>
+              <div className="mt-2 grid gap-3 sm:grid-cols-2">
+                <button
+                  type="submit"
+                  className="rounded-full bg-[#25D366] px-7 py-3 text-sm font-bold text-white hover:opacity-90"
+                >
+                  Send via WhatsApp
+                </button>
+                <a
+                  href={mailHref}
+                  className="rounded-full bg-primary px-7 py-3 text-center text-sm font-bold text-primary-foreground hover:opacity-90"
+                >
+                  Send via Email
+                </a>
+              </div>
               <p className="text-center text-xs text-muted-foreground">
-                Opens WhatsApp with your message ready to send to +234 814 626 9080.
+                WhatsApp opens a chat to +234 814 626 9080 · Email opens your mail app to {supportEmail}.
               </p>
             </div>
           </form>
+        </div>
+      </section>
+
+      <section className="bg-muted/40 py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="text-xs font-bold uppercase tracking-widest text-brand">Where We Work</div>
+            <h2 className="mt-3 text-3xl font-black text-primary md:text-4xl">Our Service Area in Lagos</h2>
+            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-brand" />
+            <p className="mt-6 text-muted-foreground">
+              Based in Lekki, SparklePro covers homes, offices and event venues across Lagos — from the Island
+              to the Mainland. If your location isn't listed, reach out anyway; we usually cover it.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+            <div className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-border">
+              <iframe
+                title="SparklePro service area — Lekki, Lagos"
+                src="https://www.google.com/maps?q=Lekki%2C%20Lagos%2C%20Nigeria&output=embed"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+            <div className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border">
+              <div className="text-lg font-black text-primary">Areas we cover</div>
+              <ul className="mt-4 grid grid-cols-2 gap-2 text-sm font-semibold text-foreground">
+                {[
+                  "Lekki Phase 1 & 2",
+                  "Ajah",
+                  "Victoria Island",
+                  "Ikoyi",
+                  "Ikate",
+                  "Chevron",
+                  "Sangotedo",
+                  "Maryland",
+                  "Yaba",
+                  "Ikeja",
+                  "Surulere",
+                  "Magodo",
+                ].map((a) => (
+                  <li key={a} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand" /> {a}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-sm text-muted-foreground">
+                Not sure if we cover your area?{" "}
+                <a href={`https://wa.me/${waNumber}`} className="font-bold text-brand">
+                  Ping us on WhatsApp
+                </a>{" "}
+                and we'll confirm right away.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
