@@ -16,6 +16,43 @@ export const Route = createFileRoute("/about-us")({
       { property: "og:title", content: "About SparklePro Integrated Cleaning Service" },
       { property: "og:description", content: "Our mission, vision and team." },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "SparklePro Integrated Cleaning Service",
+          url: "https://sparkleprointegratedcleaningservice.lovable.app/",
+          logo: "https://sparkleprointegratedcleaningservice.lovable.app/favicon.png",
+          telephone: "+2348146269080",
+          email: "sparkleprointegrated@gmail.com",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "U3 Estate Maruwa",
+            addressLocality: "Lekki",
+            postalCode: "105101",
+            addressRegion: "Lagos",
+            addressCountry: "NG",
+          },
+          areaServed: "Lagos, Nigeria",
+          sameAs: ["https://maps.app.goo.gl/GJoHJ4HuWCG4B2dcA"],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            { "@type": "Question", name: "What services does SparklePro offer in Lagos?", acceptedAnswer: { "@type": "Answer", text: "Residential and commercial cleaning, janitorial services, fumigation and pest control, post-construction cleaning, move-in/move-out cleaning and pre/post-event cleaning across Lekki, Ajah, VI, Ikoyi and mainland Lagos." } },
+            { "@type": "Question", name: "Are your cleaners trained and vetted?", acceptedAnswer: { "@type": "Answer", text: "Yes. Every SparklePro cleaner is trained, vetted and supervised. We only deploy professionals we would trust in our own home." } },
+            { "@type": "Question", name: "Do you use eco-friendly products?", acceptedAnswer: { "@type": "Answer", text: "Yes — we use eco-friendly, odourless reagents for cleaning and fumigation so your space is safe for people and pets." } },
+            { "@type": "Question", name: "How can I book?", acceptedAnswer: { "@type": "Answer", text: "Book online in under a minute, or WhatsApp/call +234 814 626 9080. We're open 24 hours Monday–Saturday." } },
+          ],
+        }),
+      },
+    ],
   }),
   component: About,
 });
@@ -144,7 +181,38 @@ function About() {
       </section>
 
       <WhyChooseUs />
+      <AboutFaq />
     </div>
+  );
+}
+
+function AboutFaq() {
+  const items: [string, string][] = [
+    ["What services does SparklePro offer in Lagos?", "Residential and commercial cleaning, janitorial services, fumigation and pest control, post-construction cleaning, move-in/move-out cleaning and pre/post-event cleaning across Lekki, Ajah, VI, Ikoyi and mainland Lagos."],
+    ["Are your cleaners trained and vetted?", "Yes. Every SparklePro cleaner is trained, vetted and supervised. We only deploy professionals we would trust in our own home."],
+    ["Do you use eco-friendly products?", "Yes — we use eco-friendly, odourless reagents for cleaning and fumigation so your space is safe for people and pets."],
+    ["How can I book?", "Book online in under a minute, or WhatsApp/call +234 814 626 9080. We're open 24 hours Monday–Saturday."],
+  ];
+  return (
+    <section className="py-20">
+      <div className="mx-auto max-w-4xl px-4 md:px-8">
+        <div className="text-center">
+          <div className="text-xs font-bold uppercase tracking-widest text-brand">FAQ</div>
+          <h2 className="mt-3 text-3xl font-black text-primary md:text-4xl">Questions about SparklePro</h2>
+          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-brand" />
+        </div>
+        <div className="mt-10 space-y-4">
+          {items.map(([q, a]) => (
+            <details key={q} className="rounded-xl bg-card p-5 shadow-sm ring-1 ring-border">
+              <summary className="cursor-pointer list-none text-base font-bold text-primary marker:hidden">
+                <span className="mr-2 text-brand">＋</span>{q}
+              </summary>
+              <p className="mt-3 text-sm text-muted-foreground">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
