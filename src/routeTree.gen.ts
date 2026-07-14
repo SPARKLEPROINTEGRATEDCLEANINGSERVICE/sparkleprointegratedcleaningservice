@@ -14,6 +14,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookOnlineRouteImport } from './routes/book-online'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TeamKemiAdebayoPraiseRouteImport } from './routes/team.kemi-adebayo-praise'
 
 const OurServicesRoute = OurServicesRouteImport.update({
   id: '/our-services',
@@ -40,6 +41,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamKemiAdebayoPraiseRoute = TeamKemiAdebayoPraiseRouteImport.update({
+  id: '/team/kemi-adebayo-praise',
+  path: '/team/kemi-adebayo-praise',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/book-online': typeof BookOnlineRoute
   '/contact': typeof ContactRoute
   '/our-services': typeof OurServicesRoute
+  '/team/kemi-adebayo-praise': typeof TeamKemiAdebayoPraiseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/book-online': typeof BookOnlineRoute
   '/contact': typeof ContactRoute
   '/our-services': typeof OurServicesRoute
+  '/team/kemi-adebayo-praise': typeof TeamKemiAdebayoPraiseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,12 +70,25 @@ export interface FileRoutesById {
   '/book-online': typeof BookOnlineRoute
   '/contact': typeof ContactRoute
   '/our-services': typeof OurServicesRoute
+  '/team/kemi-adebayo-praise': typeof TeamKemiAdebayoPraiseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about-us' | '/book-online' | '/contact' | '/our-services'
+  fullPaths:
+    | '/'
+    | '/about-us'
+    | '/book-online'
+    | '/contact'
+    | '/our-services'
+    | '/team/kemi-adebayo-praise'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about-us' | '/book-online' | '/contact' | '/our-services'
+  to:
+    | '/'
+    | '/about-us'
+    | '/book-online'
+    | '/contact'
+    | '/our-services'
+    | '/team/kemi-adebayo-praise'
   id:
     | '__root__'
     | '/'
@@ -75,6 +96,7 @@ export interface FileRouteTypes {
     | '/book-online'
     | '/contact'
     | '/our-services'
+    | '/team/kemi-adebayo-praise'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,6 +105,7 @@ export interface RootRouteChildren {
   BookOnlineRoute: typeof BookOnlineRoute
   ContactRoute: typeof ContactRoute
   OurServicesRoute: typeof OurServicesRoute
+  TeamKemiAdebayoPraiseRoute: typeof TeamKemiAdebayoPraiseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -122,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team/kemi-adebayo-praise': {
+      id: '/team/kemi-adebayo-praise'
+      path: '/team/kemi-adebayo-praise'
+      fullPath: '/team/kemi-adebayo-praise'
+      preLoaderRoute: typeof TeamKemiAdebayoPraiseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -131,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookOnlineRoute: BookOnlineRoute,
   ContactRoute: ContactRoute,
   OurServicesRoute: OurServicesRoute,
+  TeamKemiAdebayoPraiseRoute: TeamKemiAdebayoPraiseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
