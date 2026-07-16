@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import heroTeam from "@/assets/hero-team.jpg";
 import cleaningImg from "@/assets/service-cleaning.jpg";
 import fumigationImg from "@/assets/service-fumigation.jpg";
-import janitorialImg from "@/assets/service-janitorial.jpg";
 import suppliesImg from "@/assets/supplies.jpg";
 import cleanHome from "@/assets/clean-home.jpg";
 
@@ -94,9 +93,7 @@ function Index() {
                 text: "Home and office deep cleaning, floor care, high-rise window cleaning, carpet & upholstery care, pre and post-events cleaning.",
               },
               {
-                img: janitorialImg,
-                title: "Janitorial Services",
-                text: "Trained janitors, maids and cleaners deployed and managed on your behalf so you can focus on your core business.",
+                
               },
               {
                 img: fumigationImg,
@@ -154,7 +151,7 @@ function Index() {
             <div className="mt-8 space-y-5">
               {[
                 { label: "House Cleaning", v: 96 },
-                { label: "Janitorial", v: 93 },
+                { label: "Deep Cleaning", v: 94 },
                 { label: "Fumigation", v: 89 },
                 { label: "Training", v: 94 },
               ].map((s) => (
