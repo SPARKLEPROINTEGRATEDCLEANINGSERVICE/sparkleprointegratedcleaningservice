@@ -106,7 +106,7 @@ function About() {
               <div className="rounded-xl bg-muted/60 p-5">
                 <div className="text-xs font-bold uppercase tracking-widest text-brand">Our Vision</div>
                 <p className="mt-2 text-sm text-foreground">
-                  To be the best option for our customers.
+                  To become the first choice for professional residential cleaning services in Lagos — a trusted name known for quality, reliability and customer satisfaction.
                 </p>
               </div>
               <div className="rounded-xl bg-muted/60 p-5">
@@ -123,7 +123,7 @@ function About() {
       <section className="bg-muted/50 py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <h2 className="text-3xl font-black text-primary md:text-4xl">
-            The best cleaning &amp; janitorial service you can trust.
+            The best cleaning service you can trust.
           </h2>
           <div className="mt-4 h-1 w-16 rounded-full bg-brand" />
           <div className="mt-10 grid gap-6 md:grid-cols-2">
