@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import heroTeam from "@/assets/hero-team.jpg";
 import cleaningImg from "@/assets/service-cleaning.jpg";
 import fumigationImg from "@/assets/service-fumigation.jpg";
-import janitorialImg from "@/assets/service-janitorial.jpg";
 import suppliesImg from "@/assets/supplies.jpg";
 import cleanHome from "@/assets/clean-home.jpg";
 
@@ -82,7 +81,7 @@ function Index() {
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <div className="text-xs font-bold uppercase tracking-widest text-brand">What We Do</div>
             <h2 className="mt-3 text-3xl font-black text-primary md:text-4xl">
-              The Home of Cleaning &amp; Janitorial
+              The Home of Professional Cleaning
             </h2>
             <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-brand" />
           </div>
@@ -91,17 +90,17 @@ function Index() {
               {
                 img: cleaningImg,
                 title: "Cleaning Services",
-                text: "Home and office deep cleaning, floor care, high-rise window cleaning, carpet & upholstery care, pre and post-events cleaning.",
-              },
-              {
-                img: janitorialImg,
-                title: "Janitorial Services",
-                text: "Trained janitors, maids and cleaners deployed and managed on your behalf so you can focus on your core business.",
+                text: "Regular house cleaning, deep cleaning, move-in/out and sanitation & disinfection across Lagos.",
               },
               {
                 img: fumigationImg,
                 title: "Fumigation & Pest Control",
                 text: "Odorless, eco-friendly fumigation and disinfection for bed bugs, cockroaches, rodents and more.",
+              },
+              {
+                img: suppliesImg,
+                title: "Deep Cleaning",
+                text: "Complete resets for kitchens, bathrooms, appliances and living areas — every corner, done properly.",
               },
             ].map((c) => (
               <article
@@ -154,7 +153,7 @@ function Index() {
             <div className="mt-8 space-y-5">
               {[
                 { label: "House Cleaning", v: 96 },
-                { label: "Janitorial", v: 93 },
+                { label: "Deep Cleaning", v: 94 },
                 { label: "Fumigation", v: 89 },
                 { label: "Training", v: 94 },
               ].map((s) => (

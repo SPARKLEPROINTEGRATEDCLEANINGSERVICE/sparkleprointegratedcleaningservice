@@ -45,7 +45,7 @@ export const Route = createFileRoute("/about-us")({
           "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: [
-            { "@type": "Question", name: "What services does SparklePro offer in Lagos?", acceptedAnswer: { "@type": "Answer", text: "Residential and commercial cleaning, janitorial services, fumigation and pest control, post-construction cleaning, move-in/move-out cleaning and pre/post-event cleaning across Lekki, Ajah, VI, Ikoyi and mainland Lagos." } },
+            { "@type": "Question", name: "What services does SparklePro offer in Lagos?", acceptedAnswer: { "@type": "Answer", text: "Residential and commercial cleaning, fumigation and pest control, deep cleaning, sanitation and disinfection, and move-in/move-out cleaning across Lekki, Ajah, VI, Ikoyi and mainland Lagos." } },
             { "@type": "Question", name: "Are your cleaners trained and vetted?", acceptedAnswer: { "@type": "Answer", text: "Yes. Every SparklePro cleaner is trained, vetted and supervised. We only deploy professionals we would trust in our own home." } },
             { "@type": "Question", name: "Do you use eco-friendly products?", acceptedAnswer: { "@type": "Answer", text: "Yes — we use eco-friendly, odourless reagents for cleaning and fumigation so your space is safe for people and pets." } },
             { "@type": "Question", name: "How can I book?", acceptedAnswer: { "@type": "Answer", text: "Book online in under a minute, or WhatsApp/call +234 814 626 9080. We're open 24 hours Monday–Saturday." } },
@@ -106,7 +106,7 @@ function About() {
               <div className="rounded-xl bg-muted/60 p-5">
                 <div className="text-xs font-bold uppercase tracking-widest text-brand">Our Vision</div>
                 <p className="mt-2 text-sm text-foreground">
-                  To be the best option for our customers.
+                  To become the first choice for professional residential cleaning services in Lagos — a trusted name known for quality, reliability and customer satisfaction.
                 </p>
               </div>
               <div className="rounded-xl bg-muted/60 p-5">
@@ -123,7 +123,7 @@ function About() {
       <section className="bg-muted/50 py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <h2 className="text-3xl font-black text-primary md:text-4xl">
-            The best cleaning &amp; janitorial service you can trust.
+            The best cleaning service you can trust.
           </h2>
           <div className="mt-4 h-1 w-16 rounded-full bg-brand" />
           <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -188,7 +188,7 @@ function About() {
 
 function AboutFaq() {
   const items: [string, string][] = [
-    ["What services does SparklePro offer in Lagos?", "Residential and commercial cleaning, janitorial services, fumigation and pest control, post-construction cleaning, move-in/move-out cleaning and pre/post-event cleaning across Lekki, Ajah, VI, Ikoyi and mainland Lagos."],
+    ["What services does SparklePro offer in Lagos?", "Residential and commercial cleaning, fumigation and pest control, deep cleaning, sanitation and disinfection, and move-in/move-out cleaning across Lekki, Ajah, VI, Ikoyi and mainland Lagos."],
     ["Are your cleaners trained and vetted?", "Yes. Every SparklePro cleaner is trained, vetted and supervised. We only deploy professionals we would trust in our own home."],
     ["Do you use eco-friendly products?", "Yes — we use eco-friendly, odourless reagents for cleaning and fumigation so your space is safe for people and pets."],
     ["How can I book?", "Book online in under a minute, or WhatsApp/call +234 814 626 9080. We're open 24 hours Monday–Saturday."],
@@ -256,7 +256,7 @@ function WhyChooseUs() {
           <p className="mt-6 text-muted-foreground">
             You can't afford to deploy just anyone to take care of your investments and properties. SparklePro
             Integrated Cleaning Service is a team of professionals who know exactly what to do for your peace of
-            mind — a janitorial services company in Lekki, Lagos with a difference.
+            mind — a cleaning services company in Lekki, Lagos with a difference.
           </p>
         </div>
 
@@ -294,7 +294,7 @@ function WhyChooseUs() {
 
           <article className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border md:col-span-2">
             <h3 className="text-2xl font-black text-primary">
-              Janitorial services you can rely on
+              Cleaning services you can rely on
             </h3>
             <p className="mt-4 text-sm text-muted-foreground">
               Cleaning may seem simple, but a truly spotless and hygienic environment takes expertise. SparklePro

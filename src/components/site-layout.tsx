@@ -7,7 +7,7 @@ const NAV = [
   { to: "/our-services", label: "Our Services" },
   { to: "/contact", label: "Contact Us" },
   { to: "/book-online", label: "Book Online" },
-];
+] as const;
 
 export function SiteLayout() {
   const [open, setOpen] = useState(false);

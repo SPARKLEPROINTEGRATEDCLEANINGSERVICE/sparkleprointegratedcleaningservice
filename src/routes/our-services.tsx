@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site-layout";
 import cleaningImg from "@/assets/service-cleaning.jpg";
-import janitorialImg from "@/assets/service-janitorial.jpg";
 import fumigationImg from "@/assets/service-fumigation.jpg";
 import suppliesImg from "@/assets/supplies.jpg";
 
@@ -12,10 +11,10 @@ export const Route = createFileRoute("/our-services")({
       {
         name: "description",
         content:
-          "House cleaning, janitorial, fumigation and post-construction cleaning services by SparklePro in Lekki, Lagos.",
+          "House cleaning, fumigation, deep cleaning, sanitation and move-in/out services by SparklePro in Lekki, Lagos.",
       },
       { property: "og:title", content: "SparklePro Services" },
-      { property: "og:description", content: "Cleaning, janitorial and fumigation in Lagos." },
+      { property: "og:description", content: "Cleaning and fumigation services in Lagos." },
     ],
   }),
   component: Services,
@@ -23,27 +22,21 @@ export const Route = createFileRoute("/our-services")({
 
 const services = [
   {
-    id: "house-cleaning",
+    id: "cleaning",
     img: cleaningImg,
-    title: "House Cleaning",
-    text: "Deep cleaning for apartments, duplexes and estates across Lekki, Ajah, Ikoyi and VI. Floor care, kitchen, bathrooms and living areas.",
+    title: "Cleaning Services",
+    text: "Comprehensive residential and commercial cleaning across Lagos — regular, deep, move-in/out, and sanitation.",
     features: [
-      "Kitchen degrease, appliance & cabinet wipe-down",
-      "Bathroom sanitisation and descaling",
-      "Floor mop, vacuum and surface dusting",
-      "Bed making and living-area tidy",
+      "Regular House Cleaning",
+      "Move In & Move Out Cleaning",
+      "Sanitation & Disinfection",
+      "Deep Cleaning Services",
     ],
-  },
-  {
-    id: "janitorial",
-    img: janitorialImg,
-    title: "Office & Janitorial",
-    text: "Trained janitors deployed to your office. Daily, weekly or monthly plans with full supervision.",
-    features: [
-      "Dedicated, background-checked janitors",
-      "Daily / weekly / monthly rotation",
-      "On-site supervisor and QA visits",
-      "Consumables & restroom restocking",
+    subs: [
+      { title: "Regular House Cleaning", slug: "regular-house-cleaning" },
+      { title: "Move In & Move Out", slug: "move-in-move-out" },
+      { title: "Sanitation & Disinfection", slug: "sanitation-disinfection" },
+      { title: "Deep Cleaning", slug: "deep-cleaning" },
     ],
   },
   {
@@ -52,10 +45,13 @@ const services = [
     title: "Fumigation & Pest Control",
     text: "Odorless, eco-friendly fumigation for bed bugs, cockroaches, rodents and termites.",
     features: [
-      "Thermal-fogging virus disinfection",
-      "Bed bug, cockroach & rodent treatment",
-      "Termite pre & post-construction",
+      "Insect Control (Cockroach, Bedbug, Mosquito, Ants)",
+      "Rodent Control",
+      "Termite & pre-construction treatment",
       "Safe for children and pets",
+    ],
+    subs: [
+      { title: "Insect & Pest Control", slug: "insect-control" },
     ],
   },
   {
@@ -69,6 +65,7 @@ const services = [
       "Deep bathroom & kitchen reset",
       "Landlord hand-over ready",
     ],
+    subs: [{ title: "Move In / Move Out", slug: "move-in-move-out" }],
   },
   {
     id: "post-construction",
@@ -81,20 +78,9 @@ const services = [
       "Window, frame & fitting polish",
       "Debris haul-out and final buff",
     ],
+    subs: [{ title: "Deep Cleaning", slug: "deep-cleaning" }],
   },
-  {
-    id: "events",
-    img: janitorialImg,
-    title: "Events Clean-Up",
-    text: "Pre and post-event cleaning for weddings, corporate functions and private parties.",
-    features: [
-      "Venue pre-event setup cleaning",
-      "On-site attendants during event",
-      "Overnight teardown and clean-up",
-      "Waste sorting and disposal",
-    ],
-  },
-];
+] as const;
 
 function Services() {
   return (
@@ -158,9 +144,26 @@ function Services() {
                       </li>
                     ))}
                   </ul>
+                  {s.subs && s.subs.length > 0 && (
+                    <div className="mt-6">
+                      <div className="text-xs font-bold uppercase tracking-widest text-brand">Read more about:</div>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {s.subs.map((sub) => (
+                          <Link
+                            key={sub.slug}
+                            to="/services/$slug"
+                            params={{ slug: sub.slug }}
+                            className="rounded-full border-2 border-brand px-4 py-2 text-xs font-bold text-brand hover:bg-brand hover:text-brand-foreground"
+                          >
+                            {sub.title} →
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   <Link
                     to="/book-online"
-                    className="mt-8 inline-block rounded-full bg-brand px-6 py-3 text-sm font-bold text-brand-foreground hover:opacity-90"
+                    className="mt-6 inline-block rounded-full bg-brand px-6 py-3 text-sm font-bold text-brand-foreground hover:opacity-90"
                   >
                     Book {s.title}
                   </Link>
