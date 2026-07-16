@@ -67,7 +67,7 @@ export const logWhatsappClick = createServerFn({ method: "POST" })
 export const listSubmissions = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { data: isAdmin } = await context.supabase.rpc("has_role", {
+    const { data: isAdmin } = await (context.supabase.rpc as unknown as (fn: string, args: Record<string, unknown>) => Promise<{ data: boolean | null }>) ("has_role", {
       _user_id: context.userId,
       _role: "admin",
     });
