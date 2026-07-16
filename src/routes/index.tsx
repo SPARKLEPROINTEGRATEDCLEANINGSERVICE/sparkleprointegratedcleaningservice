@@ -90,15 +90,17 @@ function Index() {
               {
                 img: cleaningImg,
                 title: "Cleaning Services",
-                text: "Home and office deep cleaning, floor care, high-rise window cleaning, carpet & upholstery care, pre and post-events cleaning.",
-              },
-              {
-                
+                text: "Regular house cleaning, deep cleaning, move-in/out and sanitation & disinfection across Lagos.",
               },
               {
                 img: fumigationImg,
                 title: "Fumigation & Pest Control",
                 text: "Odorless, eco-friendly fumigation and disinfection for bed bugs, cockroaches, rodents and more.",
+              },
+              {
+                img: suppliesImg,
+                title: "Deep Cleaning",
+                text: "Complete resets for kitchens, bathrooms, appliances and living areas — every corner, done properly.",
               },
             ].map((c) => (
               <article
