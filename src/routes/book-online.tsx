@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site-layout";
 import { useState } from "react";
+import { submitBooking, logWhatsappClick } from "@/lib/submissions.functions";
+import { useServerFn } from "@tanstack/react-start";
 
 export const Route = createFileRoute("/book-online")({
   head: () => ({
@@ -15,13 +17,15 @@ export const Route = createFileRoute("/book-online")({
   component: BookOnline,
 });
 
-const SERVICES = ["House Cleaning", "Office / Janitorial", "Fumigation", "Move In / Move Out", "Post-Construction"];
+const SERVICES = ["Regular House Cleaning", "Deep Cleaning", "Fumigation & Pest Control", "Move In / Move Out", "Sanitation & Disinfection"];
 const SUPPORT_EMAIL = "sparkleprointegrated@gmail.com";
 const WA_NUMBER = "2348146269080";
 
 function BookOnline() {
   const [channel, setChannel] = useState<"whatsapp" | "email" | null>(null);
   const [sent, setSent] = useState(false);
+  const persistBooking = useServerFn(submitBooking);
+  const logClick = useServerFn(logWhatsappClick);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -40,8 +44,11 @@ function BookOnline() {
     `Service: ${form.service}\nAddress: ${form.address}\n` +
     `Date: ${form.date}   Time: ${form.time}\n\nDetails:\n${form.notes}`;
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      await persistBooking({ data: form });
+    } catch { /* still allow user to send */ }
     const body = `New booking request — SparklePro\n\n${buildBody()}`;
     if (channel === "email") {
       const href = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(
@@ -49,6 +56,7 @@ function BookOnline() {
       )}&body=${encodeURIComponent(body)}`;
       window.location.href = href;
     } else {
+      try { await logClick({ data: { service: form.service, page: "book-online", details: body } }); } catch { /* noop */ }
       window.open(
         `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(body)}`,
         "_blank",

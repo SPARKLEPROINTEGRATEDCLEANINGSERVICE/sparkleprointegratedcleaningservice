@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site-layout";
 import { useState } from "react";
+import { submitContact, logWhatsappClick } from "@/lib/submissions.functions";
+import { useServerFn } from "@tanstack/react-start";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -64,6 +66,8 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [sent, setSent] = useState<null | { via: "whatsapp"; to: string } | { via: "email"; to: string }>(null);
+  const submit = useServerFn(submitContact);
+  const logClick = useServerFn(logWhatsappClick);
   const waNumber = "2348146269080";
   const supportEmail = "sparkleprointegrated@gmail.com";
   const waHref = `https://wa.me/${waNumber}?text=${encodeURIComponent(
@@ -109,8 +113,12 @@ function Contact() {
           </div>
           <form
             className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
+              try {
+                await submit({ data: { ...form, source: "contact-page" } });
+                await logClick({ data: { service: "Contact", page: "contact", details: form.message } });
+              } catch { /* still open whatsapp */ }
               window.open(waHref, "_blank", "noopener,noreferrer");
               setSent({ via: "whatsapp", to: "+234 814 626 9080" });
             }}
