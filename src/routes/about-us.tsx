@@ -65,7 +65,6 @@ function About() {
     ["Pre & Post Events Cleaning", 98],
     ["Waste Management", 93],
     ["Residential Cleaning", 92],
-    ["Commercial Cleaning", 93],
     ["Post-Construction Cleaning", 91],
   ] as const;
 
@@ -299,8 +298,8 @@ function WhyChooseUs() {
             <p className="mt-4 text-sm text-muted-foreground">
               Cleaning may seem simple, but a truly spotless and hygienic environment takes expertise. SparklePro
               deploys trained cleaners and janitors across Lagos with full supervision, so you never have to worry
-              about unexpected absence or drop in quality. We serve residential, commercial and post-construction
-              spaces — Lekki, Ajah, VI, Ikoyi, Maryland and surrounding areas. Call{" "}
+              about unexpected absence or drop in quality. We serve residential and post-construction
+              spaces across Lekki, Ajah, VI, Ikoyi, Maryland and surrounding areas. Call{" "}
               <a href="tel:+2348146269080" className="font-bold text-brand">
                 +234 814 626 9080
               </a>{" "}
