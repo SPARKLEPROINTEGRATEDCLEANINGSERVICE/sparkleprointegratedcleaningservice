@@ -8,6 +8,10 @@ import subMovein from "@/assets/sub-movein.jpg";
 import subSanitation from "@/assets/sub-sanitation.jpg";
 import subDeep from "@/assets/sub-deep.jpg";
 import subInsect from "@/assets/sub-insect.jpg";
+import v284854 from "@/assets/284854.mp4.asset.json";
+import v284217 from "@/assets/284217.mp4.asset.json";
+import v284201 from "@/assets/284201.mp4.asset.json";
+import { VideoPlayer } from "@/components/video-player";
 
 type Sub = {
   slug: string;
@@ -15,6 +19,7 @@ type Sub = {
   title: string;
   tagline: string;
   img: string;
+  video?: string;
   importance: string[];
   how: string[];
   why: string[];
@@ -29,6 +34,7 @@ export const SUB_SERVICES: Record<string, Sub> = {
     title: "Regular House Cleaning",
     tagline: "Weekly or bi-weekly cleaning that keeps your Lagos home fresh, spotless and stress-free.",
     img: subRegular,
+    video: v284854.url,
     importance: [
       "Prevents dust, mould and allergen build-up that trigger asthma and skin problems.",
       "Keeps your home guest-ready every day — no more panic cleaning.",
@@ -61,6 +67,7 @@ export const SUB_SERVICES: Record<string, Sub> = {
     title: "Move In & Move Out Cleaning",
     tagline: "Get keys to a spotless new home — or leave your old one immaculate for the next tenant.",
     img: subMovein,
+    video: v284854.url,
     importance: [
       "Move-in cleaning removes dust, paint residue and the last tenant's germs before your things arrive.",
       "Move-out cleaning helps you recover your full security deposit from your landlord.",
@@ -93,6 +100,7 @@ export const SUB_SERVICES: Record<string, Sub> = {
     title: "Sanitation & Disinfection",
     tagline: "Kill germs, viruses and bacteria on high-touch surfaces across your home or office.",
     img: subSanitation,
+    video: v284217.url,
     importance: [
       "Kills viruses (including COVID-19, influenza), bacteria and fungi that ordinary cleaning misses.",
       "Essential for offices, clinics, schools, gyms and any space with high foot traffic.",
@@ -125,6 +133,7 @@ export const SUB_SERVICES: Record<string, Sub> = {
     title: "Deep Cleaning Services",
     tagline: "The complete reset — every corner, every crevice, every surface, done properly.",
     img: subDeep,
+    video: v284217.url,
     importance: [
       "Removes built-up grime that regular cleaning can't reach — grease, limescale, hard-water stains.",
       "Restores tiles, grout, upholstery and appliances to near-new condition.",
@@ -157,6 +166,7 @@ export const SUB_SERVICES: Record<string, Sub> = {
     title: "Insect & Pest Control (Cockroaches, Bedbugs, Mosquitoes, Ants, Rodents)",
     tagline: "Targeted, eco-friendly pest control for every crawling and flying nuisance in your Lagos home.",
     img: subInsect,
+    video: v284201.url,
     importance: [
       "Cockroaches spread salmonella, E. coli and trigger asthma in children.",
       "Bedbugs cause severe skin reactions, insomnia and psychological distress.",
@@ -229,7 +239,13 @@ function SubServicePage() {
           <div className="text-xs font-bold uppercase tracking-widest text-brand">
             <Link to="/our-services" className="hover:underline">Our Services</Link> / {sub.parent}
           </div>
-          <img src={sub.img} alt={sub.title} loading="lazy" className="mt-6 aspect-[16/9] w-full rounded-2xl object-cover shadow-lg" />
+          {sub.video ? (
+            <div className="mt-6">
+              <VideoPlayer src={sub.video} poster={sub.img} aspect="16/9" />
+            </div>
+          ) : (
+            <img src={sub.img} alt={sub.title} loading="lazy" className="mt-6 aspect-[16/9] w-full rounded-2xl object-cover shadow-lg" />
+          )}
 
           <Block title="Why it matters" items={sub.importance} />
           <Block title="How it works" items={sub.how} />

@@ -25,7 +25,7 @@ const services = [
     id: "cleaning",
     img: cleaningImg,
     title: "Cleaning Services",
-    text: "Comprehensive residential and commercial cleaning across Lagos — regular, deep, move-in/out, and sanitation.",
+    text: "Comprehensive residential cleaning across Lagos — regular, deep, move-in/out, and sanitation.",
     features: [
       "Regular House Cleaning",
       "Move In & Move Out Cleaning",
