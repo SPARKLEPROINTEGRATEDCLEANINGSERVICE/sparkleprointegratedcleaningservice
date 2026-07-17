@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import heroTeam from "@/assets/hero-team.jpg";
+import heroVideo from "@/assets/284189.mp4.asset.json";
+import { VideoPlayer } from "@/components/video-player";
 import cleaningImg from "@/assets/service-cleaning.jpg";
 import fumigationImg from "@/assets/service-fumigation.jpg";
 import suppliesImg from "@/assets/supplies.jpg";
@@ -60,13 +62,7 @@ function Index() {
             </div>
           </div>
           <div className="relative">
-            <img
-              src={heroTeam}
-              alt="SparklePro cleaning team in Lagos"
-              width={1600}
-              height={900}
-              className="w-full rounded-2xl object-cover shadow-2xl"
-            />
+            <VideoPlayer src={heroVideo.url} poster={heroTeam} aspect="16/10" />
             <div className="absolute -bottom-6 -left-6 hidden rounded-xl bg-brand px-6 py-4 text-brand-foreground shadow-xl md:block">
               <div className="text-xs uppercase tracking-widest opacity-90">Trusted House Cleaners</div>
               <div className="text-2xl font-black">Lekki, Lagos</div>
