@@ -128,9 +128,16 @@ function Contact() {
                 <div className="font-black">✅ Message ready to send!</div>
                 <div className="mt-1">
                   We opened {sent.via === "whatsapp" ? "WhatsApp" : "your email app"} with your message
-                  addressed to{" "}
-                  <span className="font-bold">{sent.to}</span>. Please hit send there to complete your enquiry.
+                  addressed to <span className="font-bold">{sent.to}</span>. Please hit send there to complete your enquiry.
                 </div>
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-xs font-bold text-white hover:opacity-90"
+                >
+                  💬 Open WhatsApp again
+                </a>
               </div>
             )}
             <div className="grid gap-4">

@@ -1,5 +1,6 @@
 import { Link, Outlet } from "@tanstack/react-router";
 import { useState } from "react";
+import { WelcomePopup } from "@/components/welcome-popup";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -13,6 +14,7 @@ export function SiteLayout() {
   const [open, setOpen] = useState(false);
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <WelcomePopup />
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
           <Link to="/" className="flex items-center gap-2">

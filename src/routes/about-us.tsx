@@ -59,14 +59,14 @@ export const Route = createFileRoute("/about-us")({
 
 function About() {
   const skills = [
-    ["Cleaners Deployments", 92],
-    ["Move-in / Move-out Cleaning", 93],
-    ["Fumigation & Pest Control", 94],
-    ["Pre & Post Events Cleaning", 98],
-    ["Waste Management", 93],
-    ["Residential Cleaning", 92],
-    ["Post-Construction Cleaning", 91],
-  ] as const;
+    "Cleaners Deployments",
+    "Move-in / Move-out Cleaning",
+    "Fumigation & Pest Control",
+    "Pre & Post Events Cleaning",
+    "Waste Management",
+    "Residential Cleaning",
+    "Post-Construction Cleaning",
+  ];
 
   const team = [
     {
@@ -125,16 +125,11 @@ function About() {
             The best cleaning service you can trust.
           </h2>
           <div className="mt-4 h-1 w-16 rounded-full bg-brand" />
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {skills.map(([label, v]) => (
-              <div key={label}>
-                <div className="flex justify-between text-sm font-semibold">
-                  <span>{label}</span>
-                  <span className="text-brand">{v}%</span>
-                </div>
-                <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-white">
-                  <div className="h-full rounded-full bg-brand" style={{ width: `${v}%` }} />
-                </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {skills.map((label) => (
+              <div key={label} className="flex items-center gap-3 rounded-xl bg-white px-5 py-4 text-sm font-semibold shadow-sm ring-1 ring-border">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand text-brand-foreground">✓</span>
+                {label}
               </div>
             ))}
           </div>
@@ -253,9 +248,11 @@ function WhyChooseUs() {
           </h2>
           <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-brand" />
           <p className="mt-6 text-muted-foreground">
-            You can't afford to deploy just anyone to take care of your investments and properties. SparklePro
-            Integrated Cleaning Service is a team of professionals who know exactly what to do for your peace of
-            mind — a cleaning services company in Lekki, Lagos with a difference.
+            Your home deserves more than just a quick clean — it deserves experienced professionals who pay
+            attention to every detail. At SparklePro Integrated Cleaning Service, we are committed to delivering
+            high-quality residential cleaning with care, reliability and professionalism. Based in Lekki, Lagos,
+            we treat every home with the same level of respect and attention as if it were our own, giving you a
+            clean, fresh and comfortable space every time.
           </p>
         </div>
 
