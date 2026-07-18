@@ -141,29 +141,19 @@ function Index() {
           <div>
             <div className="text-xs font-bold uppercase tracking-widest text-brand">Our Vision</div>
             <h2 className="mt-3 text-3xl font-black text-primary md:text-4xl">
-              To be the only available option of choice for our customers.
+              To be the first choice for residential cleaning services in Lagos, known for quality, professionalism and reliability.
             </h2>
             <p className="mt-5 text-muted-foreground">
               At SparklePro Integrated Cleaning Service we deliver quality — every visit, every corner, every time.
             </p>
-            <div className="mt-8 space-y-5">
-              {[
-                { label: "House Cleaning", v: 96 },
-                { label: "Deep Cleaning", v: 94 },
-                { label: "Fumigation", v: 89 },
-                { label: "Training", v: 94 },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className="flex justify-between text-sm font-semibold">
-                    <span>{s.label}</span>
-                    <span className="text-brand">{s.v}%</span>
-                  </div>
-                  <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-muted">
-                    <div className="h-full rounded-full bg-brand" style={{ width: `${s.v}%` }} />
-                  </div>
-                </div>
+            <ul className="mt-8 space-y-3">
+              {["House Cleaning", "Deep Cleaning", "Fumigation", "Training"].map((label) => (
+                <li key={label} className="flex items-center gap-3 rounded-lg bg-muted/60 px-4 py-3 text-sm font-semibold">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand text-brand-foreground text-xs">✓</span>
+                  {label}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </section>
@@ -231,7 +221,7 @@ function Index() {
           {[
             ["4.8★", "Google Rating"],
             ["24/7", "Open Hours"],
-            ["250+", "Homes Cleaned"],
+            ["100+", "Homes Cleaned"],
             ["100%", "Satisfaction"],
           ].map(([n, l]) => (
             <div key={l}>
