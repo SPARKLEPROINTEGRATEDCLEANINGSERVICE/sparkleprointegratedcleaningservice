@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import ownerImg from "@/assets/owner-welcome.jpg";
+import ownerAsset from "@/assets/owner-welcome.jpg.asset.json";
+const ownerImg = ownerAsset.url;
 
 const KEY = "sparklepro_welcome_seen_v1";
 
